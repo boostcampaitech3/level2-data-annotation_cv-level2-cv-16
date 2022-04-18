@@ -99,14 +99,15 @@ def do_training(
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = EAST()
     model.to(device)
+
     opt_module = getattr(import_module("torch.optim"), args.optimizer)
     optimizer = opt_module(
         filter(lambda p: p.requires_grad, model.parameters()),
         lr=learning_rate,
         weight_decay=5e-4,
     )
-    scheduler = lr_scheduler.MultiStepLR(
-        optimizer, milestones=[max_epoch // 2], gamma=0.1
+    scheduler = lr_scheduler.CosineAnnealingLR(
+        optimizer, T_max=100, eta_min=0.001
     )
 
     for epoch in range(max_epoch):
