@@ -1,3 +1,5 @@
 __pycache__/
 wandb/
-*.pth
+.ipynb_checkpoints/
+trained_models/
+#*.pth
