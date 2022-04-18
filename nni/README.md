@@ -14,7 +14,7 @@ python -m pip install --upgrade nni
     ```
     
 
-1. terminal에서 다음의 명령어를 입력하여 실행합니다.
+2. terminal에서 다음의 명령어를 입력하여 실행합니다.
     
     ```bash
     nnictl create --config nni/config.yml --port 30001
