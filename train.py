@@ -136,22 +136,17 @@ def do_training(
                 pbar.set_postfix(val_dict)
 
         scheduler.step()
-
-        print(
-            "Mean loss: {:.4f} | Elapsed time: {}".format(
-                epoch_loss / num_batches, timedelta(seconds=time.time() - epoch_start)
-            )
-        )
-
-        wandb.log(
-            {
-                "cls_loss": extra_info["cls_loss"],
-                "angle_loss": extra_info["angle_loss"],
-                "iou_loss": extra_info["iou_loss"],
-                "mean_loss": epoch_loss / num_batches,
-            }
-        )
-
+   
+        print('Mean loss: {:.4f} | Elapsed time: {}'.format(
+            epoch_loss / num_batches, timedelta(seconds=time.time() - epoch_start)))
+        
+        wandb.log({
+            'cls_loss': extra_info['cls_loss'],
+            'angle_loss': extra_info['angle_loss'],
+            'iou_loss': extra_info['iou_loss'],
+            "mean_loss": epoch_loss / num_batches,
+        })
+      
         nni.report_final_result(epoch_loss / num_batches)
 
         if (epoch + 1) % save_interval == 0:
