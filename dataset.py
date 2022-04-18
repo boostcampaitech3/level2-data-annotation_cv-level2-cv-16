@@ -365,18 +365,21 @@ class SceneTextDataset(Dataset):
         crop_size=512,
         color_jitter=True,
         normalize=True,
+        train= True,
     ):
         with open(osp.join(root_dir, "ufo/{}.json".format(split)), "r") as f:
             anno = json.load(f)
 
         self.anno = anno
         self.image_fnames = sorted(anno["images"].keys())
-        # self.image_dir = osp.join(root_dir, 'images')
-        self.image_dir = osp.join(root_dir, "{}".format(split))
+        self.image_dir = osp.join(root_dir, 'images')
+        #self.image_dir = osp.join(root_dir, "{}".format(split))
 
         self.image_size, self.crop_size = image_size, crop_size
+        self.train = train
         self.color_jitter, self.normalize = color_jitter, normalize
-
+        if self.train == False:
+            self.color_jitter = False
     def __len__(self):
         return len(self.image_fnames)
 
@@ -399,7 +402,8 @@ class SceneTextDataset(Dataset):
         image = Image.open(image_fpath)
         image, vertices = resize_img(image, vertices, self.image_size)
         image, vertices = adjust_height(image, vertices)
-        image, vertices = rotate_img(image, vertices)
+        if self.train:
+            image, vertices = rotate_img(image, vertices)
         image, vertices = crop_img(image, vertices, labels, self.crop_size)
 
         if image.mode != "RGB":
