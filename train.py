@@ -20,6 +20,10 @@ import nni
 from importlib import import_module
 from nni.utils import merge_parameter
 
+import numpy as np
+import random
+import torch.backends.cudnn as cudnn
+
 wandb.init(project="data-annotation", entity="medic", name="Kyoungmin_nni-experiment-")
 
 def fix_seed() :
