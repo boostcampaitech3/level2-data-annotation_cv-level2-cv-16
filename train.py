@@ -167,6 +167,7 @@ def do_training(
 
 
 def main(args):
+    fix_seed()
     do_training(**args.__dict__)
 
 
