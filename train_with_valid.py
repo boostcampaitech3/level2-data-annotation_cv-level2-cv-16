@@ -129,7 +129,7 @@ def do_training(
                 timedelta(seconds=time.time() - epoch_start),
             )
         )
-
+        model.eval()
         with torch.no_grad():
             epoch_loss_val, epoch_start = 0, time.time()
             with tqdm(total=num_batches_val) as pbar:
