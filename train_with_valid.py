@@ -17,9 +17,17 @@ from model import EAST
 
 import wandb
 
-wandb.init(project="data-annotation", entity="medic")
-wandb.run.name = "ICDAR19+ICDAR17+epoch400+BATCH12_with_valid"
+wandb.init(project="data-annotation", entity="medic", name = "ICDAR19+ICDAR17+epoch400+BATCH12_with_valid")
 
+
+def fix_seed() :
+    torch.manual_seed(0)
+    torch.cuda.manual_seed(0)
+    torch.cuda.manual_seed_all(0)
+    np.random.seed(0)
+    cudnn.benchmark = False
+    cudnn.deterministic = True
+    random.seed(0)
 
 def parse_args():
     parser = ArgumentParser()
@@ -180,6 +188,7 @@ def do_training(
 
 
 def main(args):
+    fix_seed()
     do_training(**args.__dict__)
 
 
