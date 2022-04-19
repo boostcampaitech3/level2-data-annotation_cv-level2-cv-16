@@ -17,6 +17,10 @@ from model import EAST
 
 import wandb
 
+import numpy as np
+import random
+import torch.backends.cudnn as cudnn
+
 wandb.init(project="data-annotation", entity="medic", name = "ICDAR19+ICDAR17+epoch400+BATCH12_with_valid")
 
 
