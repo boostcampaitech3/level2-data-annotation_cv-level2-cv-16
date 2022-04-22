@@ -9,26 +9,26 @@
 - Project Wrap Up Report
     
     []()
-    
-<br>
+      
+
 ## 🔎 **글자 검출 대회**
 
-![Untitled](https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/blob/main/src/Competition%20Title%20Heading.png)
-<br>
+![Untitled](https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/blob/main/src/Competition%20Title%20Heading.png)  
+
 ### 😎 Members
 
 | 권순호 | 서다빈 | 서예현 | 이상윤 | 전경민 |
 | --- | --- | --- | --- | --- |
-| Github | Github | Github | Github | Github |
-<br>
+| Github | Github | Github | Github | Github |  
+
 ### 🌏 Contribution
 
 - 권순호: Conduct experiments on training Epoch, Batch size, albumentation
 - 서다빈: Experiment with various learning rate schedulers, apply straug augmentation, and concat multiple datasets
 - 서예현: boostcamp data implementation, dealt with polygon bounding box issues
 - 이상윤:
-- 전경민: Hyperparameter Tuning(with Auto-ML), Data Augmentation
-<br>
+- 전경민: Hyperparameter Tuning(with Auto-ML), Data Augmentation  
+
 ### **❓Problem Definition**
 
 ![Untitled](https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/blob/main/src/Problem%20Definition.png)
@@ -39,8 +39,8 @@
     2. 예측 csv 파일 제출 (Evaluation) 방식이 아닌 **model checkpoint 와 inference.py 를 제출하여 채점**하는 방식입니다.
     3. 대회 기간과 task 난이도를 고려하여 코드 작성에 제약사항이 있습니다. 상세 내용은 **하단 Rules를 참고**해주세요**.**
 - **Input** : 글자가 포함된 전체 이미지
-- **Output** : bbox 좌표가 포함된 UFO Format
-<br>
+- **Output** : bbox 좌표가 포함된 UFO Format  
+
 ### 🚨 Competition Rules
 
 본 대회는 데이터를 구성하고 활용하는 방법에 집중하는 것을 장려하는 취지에서, 제공되는 베이스 코드 중 모델과 관련한 부분을 변경하는 것이 금지되어 있습니다. 이에 대한 세부적인 규칙은 아래와 같습니다.
@@ -53,21 +53,21 @@
 - 변경이 금지된 파일들의 내용을 이용하지 않고 모델 관련 내용을 새로 작성해서 이용하는 것도 대회 규정에 어긋나는 행위입니다.
 - 이외의 다른 파일을 변경하거나 새로운 파일을 작성하는 것은 자유롭게 진행하셔도 됩니다.
     - [예시] dataset.py에서 pre-processing, data augmentation 부분을 변경
-    - [예시] train.py에서 learning rate scheduling 부분을 변경
-<br>
+    - [예시] train.py에서 learning rate scheduling 부분을 변경  
+
 ### 💾 Datasets
 
 - ICDAR17 & ICDAR19 Korean dataset
 - Boostcamp’s self-annotated korean dataset
-- Dataset Example
-<br>
+- Dataset Example  
+
 ### 💻 **Development Environment**
 
 - GPU: Tesla V100
 - OS: Ubuntu 18.04.5LTS
 - CPU: Intel Xeon
-- Python : 3.8.5
-<br>
+- Python : 3.8.5  
+
 ### 📁 Project Structure
 
 ```markdown
@@ -106,7 +106,7 @@
 ```
 
 Input directory is removed from the github repository due to memory. The user must create the directory and follow the steps below in order to use the data.
-<br>
+
 ### 👨‍🏫 Evaluation Methods
 
 평가방법은 DetEval 방식으로 계산되어 진행됩니다.
@@ -115,8 +115,8 @@ DetEval은, 이미지 레벨에서 정답 박스가 여러개 존재하고, 예�
 
 평가가 이루어지는 방법은 다음과 같습니다.
 
-[Evaluation methods](https://www.notion.so/Evaluation-methods-700f3a9352574fed8663de74a8f2d5b3)
-<br>
+[Evaluation methods](https://www.notion.so/Evaluation-methods-700f3a9352574fed8663de74a8f2d5b3)  
+
 ### 💯 Final Score
 
 ![Untitled](https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/blob/main/src/Final%20Score.png)
@@ -124,8 +124,8 @@ DetEval은, 이미지 레벨에서 정답 박스가 여러개 존재하고, 예�
 - final result
     1. Hyperparameter: epoch=200, optimizer=AdamW, scheduler=CosineAnnealingLR, lr=0.001
     2. Datasets: ICDAR_2017 & ICDAR_2019 Korean dataset
-    3. Augmentation: CLAHE(clip_limit=6.0, tile_grid_size=(8, 8), p=0.6), InvertImg(p=0.4)
-<br>
+    3. Augmentation: CLAHE(clip_limit=6.0, tile_grid_size=(8, 8), p=0.6), InvertImg(p=0.4)  
+
 ## 👀 How to Start
 
 - Downloading the github repository
@@ -168,7 +168,7 @@ python train.py
 ```powershell
 python train_with_valid.py
 ```
-<br>
+  
 ### 📄 Experiments & Submission Report
 
 [Notion](https://www.notion.so/W13-14-Data-Annotation-Project-Team-Medic-e18cd7ceb89a4923a4d471c327cdbc21)
