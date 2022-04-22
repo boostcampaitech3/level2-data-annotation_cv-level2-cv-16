@@ -18,13 +18,14 @@ from model import EAST
 import wandb
 import nni
 from importlib import import_module
+
 from nni.utils import merge_parameter
 
 import numpy as np
 import random
 import torch.backends.cudnn as cudnn
 
-wandb.init(project="data-annotation", entity="medic", name="Kyoungmin_nni-experiment-")
+wandb.init(project="data-annotation", entity="medic")
 
 def fix_seed() :
     torch.manual_seed(0)
@@ -61,10 +62,10 @@ def parse_args():
     parser.add_argument("--image_size", type=int, default=1024)
     parser.add_argument("--input_size", type=int, default=512)
     parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument("--learning_rate", type=float, default=1e-4)
-    parser.add_argument("--max_epoch", type=int, default=200)
+    parser.add_argument("--learning_rate", type=float, default=0.001)
+    parser.add_argument("--max_epoch", type=int, default=300)
     parser.add_argument("--save_interval", type=int, default=5)
-    parser.add_argument("--optimizer", type=str, default="Adam")
+    parser.add_argument("--optimizer", type=str, default="AdamW")
 
     args = parser.parse_args()
 
@@ -92,13 +93,22 @@ def do_training(
     save_interval,
     optimizer,
 ):
-    train_dataset = SceneTextDataset(
-        train_data_dir, split="train", image_size=image_size, crop_size=input_size
+
+    train_dataset1 = SceneTextDataset(
+        "../input/data/campers", split="train", image_size=image_size, crop_size=input_size
     )
-    train_dataset = EASTDataset(train_dataset)
-    num_batches = math.ceil(len(train_dataset) / batch_size)
+    train_dataset1 = EASTDataset(train_dataset1)
+
+    train_dataset2 = SceneTextDataset(
+        "../input/data/ko_en", split="train", image_size=image_size, crop_size=input_size
+    )
+    train_dataset2 = EASTDataset(train_dataset2)
+
+    concat_dataset = torch.utils.data.ConcatDataset([train_dataset1, train_dataset2])
+
+    num_batches = math.ceil(len(concat_dataset) / batch_size)
     train_loader = DataLoader(
-        train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers
+        concat_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers
     )
 
     valid_dataset = SceneTextDataset(
