@@ -109,6 +109,8 @@ class MLT17Dataset(Dataset):
 
 
 def main():
+    """ 
+    # make train dataset without validation dataset
     dst_image_dir = osp.join(DST_DATASET_DIR, 'images')
     # dst_image_dir = None
 
@@ -131,7 +133,52 @@ def main():
     maybe_mkdir(ufo_dir)
     with open(osp.join(ufo_dir, 'train.json'), 'w') as f:
         json.dump(anno, f, indent=4)
+    """
 
+    # make train/validation dataset
+    dst_image_dir_train = osp.join(DST_DATASET_DIR, "train")
+    dst_image_dir_val = osp.join(DST_DATASET_DIR, "val")
+
+    mlt_train = MLT17Dataset(
+        osp.join(SRC_DATASET_DIR, "raw/ch8_training_images"),
+        osp.join(SRC_DATASET_DIR, "raw/ch8_training_gt"),
+        copy_images_to=dst_image_dir_train,
+    )
+    mlt_valid = MLT17Dataset(
+        osp.join(SRC_DATASET_DIR, "raw/ch8_validation_images"),
+        osp.join(SRC_DATASET_DIR, "raw/ch8_validation_gt"),
+        copy_images_to=dst_image_dir_val,
+    )
+
+    ## create train dataset
+    anno = dict(images=dict())
+    with tqdm(total=len(mlt_train)) as pbar:
+        for batch in DataLoader(
+            mlt_train, num_workers=NUM_WORKERS, collate_fn=lambda x: x
+        ):
+            image_fname, sample_info = batch[0]
+            anno["images"][image_fname] = sample_info
+            pbar.update(1)
+
+    ufo_dir_train = osp.join(DST_DATASET_DIR, "ufo")
+    maybe_mkdir(ufo_dir_train)
+    with open(osp.join(ufo_dir_train, "train.json"), "w") as f:
+        json.dump(anno, f, indent=4)
+
+    ## create val dataset
+    anno = dict(images=dict())
+    with tqdm(total=len(mlt_valid)) as pbar:
+        for batch in DataLoader(
+            mlt_valid, num_workers=NUM_WORKERS, collate_fn=lambda x: x
+        ):
+            image_fname, sample_info = batch[0]
+            anno["images"][image_fname] = sample_info
+            pbar.update(1)
+
+    ufo_dir_val = osp.join(DST_DATASET_DIR, "ufo")
+    maybe_mkdir(ufo_dir_val)
+    with open(osp.join(ufo_dir_val, "val.json"), "w") as f:
+        json.dump(anno, f, indent=4)
 
 if __name__ == '__main__':
     main()
