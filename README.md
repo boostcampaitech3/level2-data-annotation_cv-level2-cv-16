@@ -19,16 +19,16 @@
 
 | 권순호 | 서다빈 | 서예현 | 이상윤 | 전경민 |
 | --- | --- | --- | --- | --- |
-| [Github](https://github.com/tnsgh9603) | [Github](https://github.com/sodabeans) | [Github](https://github.com/justbeaver97) | [Github](https://github.com/SSANGYOON?tab=repositories) | [Github](https://github.com/seoulsky-field) |
+| [Github](https://github.com/tnsgh9603) | [Github](https://github.com/sodabeans) | [Github](https://github.com/justbeaver97) | [Github](https://github.com/SSANGYOON?tab=repositories) | [Github](https://github.com/seoulsky-field) |   
 
 
 ### 🌏 Contribution
 
 - 권순호: Conduct experiments on training Epoch, Batch size, albumentation
 - 서다빈: Experiment with various learning rate schedulers, apply straug augmentation, and concat multiple datasets
-- 서예현: boostcamp data implementation, dealt with polygon bounding box issues
+- 서예현: boostcamp's data implementation, split train/val in ICDAR17 dataset, dealt with polygon bounding box issues
 - 이상윤: ICDAR 2019 dataset,add validation process
-- 전경민: Hyperparameter Tuning(with Auto-ML), Data Augmentation  
+- 전경민: Hyperparameter Tuning(with Auto-ML), Data Augmentation   
 
 ### **❓Problem Definition**
 
@@ -40,7 +40,7 @@
     2. 예측 csv 파일 제출 (Evaluation) 방식이 아닌 **model checkpoint 와 inference.py 를 제출하여 채점**하는 방식입니다.
     3. 대회 기간과 task 난이도를 고려하여 코드 작성에 제약사항이 있습니다. 상세 내용은 **하단 Rules를 참고**해주세요**.**
 - **Input** : 글자가 포함된 전체 이미지
-- **Output** : bbox 좌표가 포함된 UFO Format  
+- **Output** : bbox 좌표가 포함된 UFO Format   
 
 ### 🚨 Competition Rules
 
@@ -148,9 +148,9 @@ sh unzip_train.sh
 sh unzip_val.sh
 ```
 
-FYI: follow the steps in issue #17 comments and issue #21 
+FYI: follow the steps in [issue #17 comments](https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/issues/17#issuecomment-1098864585) and [issue #21](https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/issues/21)
 
-- Installing the requirements for training(Note issue #8**)**
+- Installing the requirements for training(Note [issue #8](https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/issues/8))
 
 ```powershell
 pip install -r requirements.txt
