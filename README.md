@@ -27,7 +27,7 @@
 - 권순호: Conduct experiments on training Epoch, Batch size, albumentation
 - 서다빈: Experiment with various learning rate schedulers, apply straug augmentation, and concat multiple datasets
 - 서예현: boostcamp data implementation, dealt with polygon bounding box issues
-- 이상윤:
+- 이상윤: ICDAR 2019 dataset,add validation process
 - 전경민: Hyperparameter Tuning(with Auto-ML), Data Augmentation  
 
 ### **❓Problem Definition**
