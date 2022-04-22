@@ -16,10 +16,25 @@ from dataset import SceneTextDataset
 from model import EAST
 
 import wandb
-# import nni
+import nni
 from importlib import import_module
 
+from nni.utils import merge_parameter
+
+import numpy as np
+import random
+import torch.backends.cudnn as cudnn
+
 wandb.init(project="data-annotation", entity="medic")
+
+def fix_seed() :
+    torch.manual_seed(0)
+    torch.cuda.manual_seed(0)
+    torch.cuda.manual_seed_all(0)
+    np.random.seed(0)
+    cudnn.benchmark = False
+    cudnn.deterministic = True
+    random.seed(0)
 
 def parse_args():
     parser = ArgumentParser()
@@ -55,8 +70,8 @@ def parse_args():
     args = parser.parse_args()
 
     # NNI (Auto-ML) 사용을 위한 argument 재지정
-    # tuner_params = nni.get_next_parameter()
-    # args = merge_parameter(args, tuner_params)
+    tuner_params = nni.get_next_parameter()
+    args = merge_parameter(args, tuner_params)
 
     if args.input_size % 32 != 0:
         raise ValueError("`input_size` must be a multiple of 32")
@@ -155,7 +170,7 @@ def do_training(
             "mean_loss": epoch_loss / num_batches,
         })
       
-        # nni.report_final_result(epoch_loss / num_batches)
+        nni.report_final_result(epoch_loss / num_batches)
 
         if (epoch + 1) % save_interval == 0:
             if not osp.exists(model_dir):
@@ -166,6 +181,7 @@ def do_training(
 
 
 def main(args):
+    fix_seed()
     do_training(**args.__dict__)
 
 
