@@ -59,7 +59,8 @@
 
 - ICDAR17 & ICDAR19 Korean dataset
 - Boostcamp’s self-annotated korean dataset
-- Dataset Example  
+- Dataset Examples   
+ <img src="https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/blob/main/src/img_4002.jpg" height="200"/> <img src="https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/blob/main/src/img_4351.jpg" height="200"/> <img src="https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16/blob/main/src/img_1135.jpg" height="200"/>   
 
 ### 💻 **Development Environment**
 
