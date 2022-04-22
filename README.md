@@ -19,7 +19,8 @@
 
 | 권순호 | 서다빈 | 서예현 | 이상윤 | 전경민 |
 | --- | --- | --- | --- | --- |
-| Github | Github | Github | Github | Github |  
+| [Github](https://github.com/tnsgh9603) | [Github](https://github.com/sodabeans) | [Github](https://github.com/justbeaver97) | [Github](https://github.com/SSANGYOON?tab=repositories) | [Github](https://github.com/seoulsky-field) |
+
 
 ### 🌏 Contribution
 
