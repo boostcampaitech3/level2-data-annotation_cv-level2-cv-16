@@ -5,5 +5,5 @@
 ## Why
 <br>
 
-## how
+## How
 - [ ] todo
