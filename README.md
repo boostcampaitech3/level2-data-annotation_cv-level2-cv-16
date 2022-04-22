@@ -133,7 +133,7 @@ DetEval은, 이미지 레벨에서 정답 박스가 여러개 존재하고, 예�
 
 ```powershell
 git clone https://github.com/boostcampaitech3/level2-data-annotation_cv-level2-cv-16.git
-cd level2-data-annotation_cv-level2-cv-16.git
+cd level2-data-annotation_cv-level2-cv-16
 ```
 
 - How to use ICDAR17 Korean Datasets for Train & Val
