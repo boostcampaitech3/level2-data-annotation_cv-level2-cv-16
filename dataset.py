@@ -365,21 +365,22 @@ class SceneTextDataset(Dataset):
         crop_size=512,
         color_jitter=True,
         normalize=True,
-        train= True,
+        train=True,
     ):
         with open(osp.join(root_dir, "ufo/{}.json".format(split)), "r") as f:
             anno = json.load(f)
 
         self.anno = anno
         self.image_fnames = sorted(anno["images"].keys())
-        self.image_dir = osp.join(root_dir, 'images')
-        #self.image_dir = osp.join(root_dir, "{}".format(split))
+        self.image_dir = osp.join(root_dir, "images")
+        # self.image_dir = osp.join(root_dir, "{}".format(split))
 
         self.image_size, self.crop_size = image_size, crop_size
         self.train = train
         self.color_jitter, self.normalize = color_jitter, normalize
         if self.train == False:
             self.color_jitter = False
+
     def __len__(self):
         return len(self.image_fnames)
 
@@ -389,12 +390,39 @@ class SceneTextDataset(Dataset):
 
         vertices, labels = [], []
         for word_info in self.anno["images"][image_fname]["words"].values():
-            vertices.append(np.array(word_info["points"]).flatten())
+            points = np.array(word_info["points"]).flatten()
+            if len(points) > 8:
+                tmp, x, y = [], [], []
+
+                # [1599.35 1225.01 1599.35 1462.02 1916.2  1424.6  2170.69 1509.43 2185.65 1080.3  1916.2  1170.12]
+                # -> [1599.35, 1599.35, 1916.2, 2170.69, 2185.65, 1916.2],[1225.01, 1462.02, 1424.6, 1509.43, 1080.3, 1170.12]
+                # reason: scalar type cannot be rounded
+                for i in range(len(points)):
+                    if i % 2 == 0:
+                        x.append(points[i])
+                    else:
+                        y.append(points[i])
+
+                # reason: input for cv2.minAreaRect(), which is cnt, must be rounded
+                for i in range(len(x)):
+                    x_i = round(x[i])
+                    y_i = round(y[i])
+                    tmp.append([x_i, y_i])
+
+                # ex - [[1599 1225] [1599 1462] [1916 1425] [2171 1509] [2186 1080] [1916 1170]]
+                cnt = np.array(tmp)
+                # ex - rect ((1887.8902587890625, 1284.3388671875), (429.2622375488281, 581.57470703125), -87.9974594116211)
+                rect = cv2.minAreaRect(cnt)
+                # ex - [[2171. 1509.0001] [1589.7805 1488.6776] [1604.7805 1059.6776] [2186. 1080.0001]]
+                box = cv2.boxPoints(rect)
+                # ex - [2171. 1509.0001 1589.7805 1488.6776 1604.7805 1059.6776 2186. 1080.0001]
+                points = np.array(box).flatten()
+
+            vertices.append(points)
             labels.append(int(not word_info["illegibility"]))
         vertices, labels = np.array(vertices, dtype=np.float32), np.array(
             labels, dtype=np.int64
         )
-
         vertices, labels = filter_vertices(
             vertices, labels, ignore_under=10, drop_under=1
         )
