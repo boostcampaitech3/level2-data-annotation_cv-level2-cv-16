@@ -4,11 +4,11 @@
 
 ## Project Overview
 
-- Project Period
+- Project Period:
 2022.04.14 ~ 2022.04.21
-- Project Wrap Up Report
+- Project Wrap Up Report:
     
-    []()
+    [CV 데이터제작_CV_팀 리포트(16조)](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0deed663-df50-492e-a4eb-3a30f6cfa1c0/CV_%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A0%9C%EC%9E%91_CV_%ED%8C%80_%EB%A6%AC%ED%8F%AC%ED%8A%B8%2816%EC%A1%B0%29.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220513%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220513T073323Z&X-Amz-Expires=86400&X-Amz-Signature=f4bb6d9571751d8ffe8510afb6bd974dafdfa14a3442e4de4f77c8d368c04eef&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22CV%2520%25EB%258D%25B0%25EC%259D%25B4%25ED%2584%25B0%25EC%25A0%259C%25EC%259E%2591_CV_%25ED%258C%2580%2520%25EB%25A6%25AC%25ED%258F%25AC%25ED%258A%25B8%2816%25EC%25A1%25B0%29.pdf%22&x-id=GetObject)
       
 
 ## 🔎 **글자 검출 대회**
